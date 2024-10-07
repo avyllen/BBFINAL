@@ -9,8 +9,11 @@ import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -24,6 +27,15 @@ private final VelocityVoltage m_voltageVelocity = new VelocityVoltage(0, 0, true
 
 private final DigitalInput intakeLine;
 Encoder encoder;
+
+private ShuffleboardTab tab = Shuffleboard.getTab("Feeder");
+private GenericEntry feederSpeed =
+      tab.add("Feeder Speed", 0)
+         .getEntry();
+private GenericEntry feederVoltage =
+      tab.add("Feeder Voltage", 0)
+         .getEntry();
+
     
 public FeederSubsystem()
 {
@@ -46,19 +58,19 @@ public void setVelocity(double desiredRotationsPerSecond)
     m_feeder.set(desiredRotationsPerSecond);
 }
 
-public Command highspeed()
+public Command intake()
 {
-  return run(() -> this.setVelocity(1));
+  return run(() -> this.setVelocity(FeederConstants.IntakeSPEED));
 }
 
-public Command midspeed()
+public Command outtake()
 {
-  return run(() -> this.setVelocity(.5));
+  return run(() -> this.setVelocity(FeederConstants.OutakeSPEED));
 }
 
-public Command slowspeed()
+public Command ampoOuttake()
 {
-  return run(() -> this.setVelocity(.1));
+  return run(() -> this.setVelocity(FeederConstants.ampOutakeSPEED));
 }
 
 public Command withVelocity(double desiredRotationsPerSecond)
@@ -75,8 +87,8 @@ public Command withDisable()
 public void periodic() {
   // This method will be called once per scheduler run
 SmartDashboard.putBoolean("FEEDER NOTE CHECK", intakeLine.get());
-
-
+feederVoltage.setDouble(m_feeder.getMotorOutputVoltage());
+feederSpeed.setDouble(m_feeder.getMotorOutputPercent());
 
 }
 }
