@@ -10,6 +10,9 @@ import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.IntakeConstants;
@@ -23,6 +26,16 @@ public class IntakeSubsystem extends SubsystemBase {
 private final NeutralOut m_brake = new NeutralOut();
 
 TalonFXConfiguration intakeconfigs = new TalonFXConfiguration();
+
+private ShuffleboardTab tab = Shuffleboard.getTab("Intake");
+private GenericEntry intakeSpeed =
+      tab.add("Intake Speed", 0)
+         .getEntry();
+private GenericEntry intakeVoltage =
+      tab.add("Intake Voltage", 0)
+         .getEntry();
+
+
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
@@ -50,19 +63,9 @@ TalonFXConfiguration intakeconfigs = new TalonFXConfiguration();
     m_intake.setControl(m_voltageVelocity.withVelocity(desiredRotationsPerSecond));
 }
 
-public Command highspeed()
+public Command intake()
 {
-  return runOnce(() -> this.setVelocity(250));
-}
-
-public Command midspeed()
-{
-  return run(() -> this.setVelocity(10.0));
-}
-
-public Command slowspeed()
-{
-  return runOnce(() -> this.setVelocity(50));
+  return run(() -> this.setVelocity(250));
 }
 
 public Command outtake()
@@ -75,8 +78,6 @@ public Command withVelocity(double desiredRotationsPerSecond)
   return runOnce(() -> this.setVelocity(desiredRotationsPerSecond));
 }
 
-
-
 public Command withDisable()
 {
     return run(() -> this.disable());
@@ -86,5 +87,7 @@ public Command withDisable()
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    intakeVoltage.setDouble(m_intake.getMotorVoltage().getValue());
+    intakeSpeed.setDouble(m_intake.getRotorVelocity().getValue());
   }
 }
