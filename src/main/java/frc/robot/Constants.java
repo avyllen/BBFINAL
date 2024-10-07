@@ -27,4 +27,10 @@ public final class Constants {
     public static final int botShooter = 2;
     public static final int shootSpeed = 100;
 }
+public static final class FeederConstants {
+  public static final int feederID = 32;
+  public static final int feederEncoderA = 5;
+  public static final int feederEncoderB = 6;
+  public static final double IntakeSPEED = 50;
+}
 }
