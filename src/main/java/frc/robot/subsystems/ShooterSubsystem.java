@@ -9,6 +9,9 @@ import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,6 +24,20 @@ public class ShooterSubsystem extends SubsystemBase {
   private final VelocityVoltage m_voltageVelocity = new VelocityVoltage(0, 0, true, 0, 0, false, false, false);
   private final NeutralOut m_brake = new NeutralOut();
   TalonFXConfiguration shooterConfigs = new TalonFXConfiguration();
+
+  private ShuffleboardTab tab = Shuffleboard.getTab("Shooter");
+private GenericEntry topShooterSpeed =
+      tab.add("Top Shooter Speed", 0)
+         .getEntry();
+private GenericEntry bottomShooterSpeed =
+      tab.add("Botoom Shooter Speed", 0)
+         .getEntry();
+private GenericEntry topShooterVoltage =
+      tab.add("Top Shooter Voltage", 0)
+         .getEntry();
+private GenericEntry bottomShooterVoltage =
+      tab.add("Bottom Shooter Voltage", 0)
+         .getEntry();
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
@@ -60,19 +77,9 @@ public class ShooterSubsystem extends SubsystemBase {
 
 //  COMMANDS
 
-public Command highSpeed()
+public Command shoot()
 {
   return run(() -> this.setVelocity(ShooterConstants.shootSpeed));
-}
-
-public Command midSpeed()
-{
-  return run(() -> this.setVelocity(100));
-}
-
-public Command lowSpeed()
-{
-  return runOnce(() -> this.setVelocity(50));
 }
 
 public Command withVelocity(double desiredRotationsPerSecond)
@@ -87,6 +94,9 @@ public Command withDisable()
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Shooter Speed", this.getSpeed());
+    topShooterVoltage.setDouble(m_topSh.getMotorVoltage().getValue());
+    topShooterSpeed.setDouble(m_topSh.getRotorVelocity().getValue());
+    bottomShooterVoltage.setDouble(m_botSh.getMotorVoltage().getValue());
+    bottomShooterSpeed.setDouble(m_botSh.getRotorVelocity().getValue());
   }
 }

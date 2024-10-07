@@ -65,12 +65,12 @@ private GenericEntry intakeVoltage =
 
 public Command intake()
 {
-  return run(() -> this.setVelocity(250));
+  return run(() -> this.setVelocity(IntakeConstants.intakeSpeed));
 }
 
 public Command outtake()
 {
-  return run(() -> this.setVelocity(-50));
+  return run(() -> this.setVelocity(IntakeConstants.outtakeSpeed));
 }
 
 public Command withVelocity(double desiredRotationsPerSecond)

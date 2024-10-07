@@ -19,6 +19,8 @@ public final class Constants {
   public static final class IntakeConstants{
     public static final int intakeID = 3;
     public static final int intakeSpeed = 50;
+    public static final int outtakeSpeed = -50;
+
   }
   public static final class ShooterConstants {
     public static final int topShooter = 1;
