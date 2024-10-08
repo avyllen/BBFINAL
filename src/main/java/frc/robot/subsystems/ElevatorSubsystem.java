@@ -78,6 +78,11 @@ private void setPosition(double setPoint)
   l_pidController.setReference(setPoint, CANSparkMax.ControlType.kPosition);
 }
 
+public void homePosition()
+{
+    l_pidController.setReference(ElevatorConstants.eHomePos, CANSparkMax.ControlType.kPosition);
+}
+
 public double getEncoder()
 {
   return l_encoder.getPosition();
@@ -119,7 +124,7 @@ public Command holdPosition()
 
 public Command setHomePosition()
 {
-  return run(() -> this.setPosition(ElevatorConstants.eHomePos)); // need to find
+  return run(() -> this.setHomePosition()); // need to find
 }
 
 public Command setUpPosition()
