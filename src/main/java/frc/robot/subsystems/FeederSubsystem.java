@@ -11,6 +11,7 @@ import com.ctre.phoenix6.controls.VelocityVoltage;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -26,6 +27,8 @@ private final WPI_TalonSRX  m_feeder;
 private final VelocityVoltage m_voltageVelocity = new VelocityVoltage(0, 0, true, 0, 0, false, false, false);
 
 private final DigitalInput intakeLine;
+private final DigitalOutput outLine;
+
 Encoder encoder;
 
 private ShuffleboardTab tab = Shuffleboard.getTab("Feeder");
@@ -40,7 +43,9 @@ private GenericEntry feederVoltage =
 public FeederSubsystem()
 {
        m_feeder = new WPI_TalonSRX(FeederConstants.feederID);
-       intakeLine = new DigitalInput(0);   
+       intakeLine = new DigitalInput(0);
+       outLine = new DigitalOutput(1); 
+
 }
 
 public boolean noteCheck()
@@ -99,6 +104,6 @@ public void periodic() {
 SmartDashboard.putBoolean("FEEDER NOTE CHECK", intakeLine.get());
 feederVoltage.setDouble(m_feeder.getMotorOutputVoltage());
 feederSpeed.setDouble(m_feeder.getMotorOutputPercent());
-
+outLine.set(true);
 }
 }
