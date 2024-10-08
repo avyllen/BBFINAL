@@ -50,7 +50,7 @@ public FeederSubsystem()
 
 public boolean noteCheck()
 {
-  return intakeLine.get();
+  return !intakeLine.get();
 }
 
 public void disable()
