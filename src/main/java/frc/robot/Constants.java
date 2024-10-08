@@ -35,4 +35,9 @@ public static final class FeederConstants {
   public static final double OutakeSPEED = -.32;
   public static final double ampOutakeSPEED = -.32;
 }
+public static final class PivotConstants {
+        
+  public static final int pivot = 2;
+  public static final int pivotspeed = 80;
+}
 }
