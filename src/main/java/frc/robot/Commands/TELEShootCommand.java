@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.FeederSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 
@@ -14,23 +15,20 @@ public class TELEShootCommand extends Command{
     private final FeederSubsystem feeder;
     private final ShooterSubsystem shooter;
 
-   // private final Timer timer = new Timer();
+    private final LEDSubsystem led;
 
-   // private final LEDSubsystem led;
-
-    public TELEShootCommand(ShooterSubsystem shooter,FeederSubsystem feeder/* , LEDSubsystem led*/) {
+    public TELEShootCommand(ShooterSubsystem shooter,FeederSubsystem feeder , LEDSubsystem led) {
         this.shooter = shooter;
         this.feeder = feeder;
-        //this.led = led;
-        addRequirements(shooter,feeder/* ,led*/);
+        this.led = led;
+        addRequirements(shooter,feeder,led);
       }
 
       @Override
   public void initialize() {
-   // led.setBLUE();
+    led.setBLUE();
     shooter.setVelocity(100);
-    //timer.reset();
-  }
+    }
 
   @Override
   public void execute()
@@ -50,6 +48,6 @@ public class TELEShootCommand extends Command{
      public void end(boolean interrupted) {
       feeder.setVelocity(0);
       shooter.setVelocity(0);
-     // led.setRED();
+      led.setRED();
      }
 }
