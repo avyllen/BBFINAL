@@ -105,5 +105,6 @@ SmartDashboard.putBoolean("FEEDER NOTE CHECK", intakeLine.get());
 feederVoltage.setDouble(m_feeder.getMotorOutputVoltage());
 feederSpeed.setDouble(m_feeder.getMotorOutputPercent());
 outLine.set(true);
+
 }
 }
