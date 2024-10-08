@@ -58,17 +58,27 @@ public void setVelocity(double desiredRotationsPerSecond)
     m_feeder.set(desiredRotationsPerSecond);
 }
 
-public Command intake()
+public void intake()
 {
-  return run(() -> this.setVelocity(FeederConstants.IntakeSPEED));
+    m_feeder.set(FeederConstants.IntakeSPEED);
 }
 
-public Command outtake()
+public void outtake()
 {
-  return run(() -> this.setVelocity(FeederConstants.OutakeSPEED));
+    m_feeder.set(FeederConstants.OutakeSPEED);
 }
 
-public Command ampoOuttake()
+public Command intakeCommand()
+{
+  return run(() -> this.intake());
+}
+
+public Command outtakeCommand()
+{
+  return run(() -> this.outtake());
+}
+
+public Command ampoOuttakeCommand()
 {
   return run(() -> this.setVelocity(FeederConstants.ampOutakeSPEED));
 }

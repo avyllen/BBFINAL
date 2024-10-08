@@ -63,14 +63,25 @@ private GenericEntry intakeVoltage =
     m_intake.setControl(m_voltageVelocity.withVelocity(desiredRotationsPerSecond));
 }
 
-public Command intake()
+  public void intake()
 {
-  return run(() -> this.setVelocity(IntakeConstants.intakeSpeed));
+    m_intake.setControl(m_voltageVelocity.withVelocity(IntakeConstants.intakeSpeed));
 }
 
-public Command outtake()
+  public void outtake()
 {
-  return run(() -> this.setVelocity(IntakeConstants.outtakeSpeed));
+    m_intake.setControl(m_voltageVelocity.withVelocity(IntakeConstants.outtakeSpeed));
+}
+
+
+public Command intakeCommand()
+{
+  return run(() -> this.intake());
+}
+
+public Command outtakeCommand()
+{
+  return run(() -> this.outtake());
 }
 
 public Command withVelocity(double desiredRotationsPerSecond)

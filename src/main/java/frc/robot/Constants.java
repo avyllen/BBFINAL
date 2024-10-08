@@ -18,8 +18,8 @@ public final class Constants {
   }
   public static final class IntakeConstants{
     public static final int intakeID = 3;
-    public static final int intakeSpeed = 50;
-    public static final int outtakeSpeed = -50;
+    public static final int intakeSpeed = -50;
+    public static final int outtakeSpeed = 50;
 
   }
   public static final class ShooterConstants {
@@ -31,8 +31,8 @@ public static final class FeederConstants {
   public static final int feederID = 32;
   public static final int feederEncoderA = 5;
   public static final int feederEncoderB = 6;
-  public static final double IntakeSPEED = 50;
-  public static final double OutakeSPEED = 50;
-  public static final double ampOutakeSPEED = 50;
+  public static final double IntakeSPEED = .32;
+  public static final double OutakeSPEED = -.32;
+  public static final double ampOutakeSPEED = -.32;
 }
 }
