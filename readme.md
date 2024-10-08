@@ -31,7 +31,7 @@ Intake (Intake,Feeder,Pivot,Elevator)
 
 Outtake
     Outtake (intake,Feeder)
-    
+
 
 Shoot Command(Shooter, Feeder, Pivot, Elevator)
     Basic - (Feeder,shooter,Pivot)
