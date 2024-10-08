@@ -7,15 +7,10 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
-import com.revrobotics.CANSparkMax;
-import java.util.function.BooleanSupplier;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class PivotSubsystem extends SubsystemBase {
@@ -75,6 +70,11 @@ public void subwooferPosition()
 public void otherPositions()
 {
   m_pidController.setReference(12.5, CANSparkMax.ControlType.kPosition);
+}
+
+public boolean LimitChecks()
+{
+return ((m_encoder.getPosition() < 0.7 && m_pivot.getAppliedOutput() < 0) || (m_encoder.getPosition() > 37 && m_pivot.getAppliedOutput() > 0));
 }
 
 
