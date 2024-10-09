@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Commands.IntakeCommand;
@@ -81,7 +82,7 @@ IntakeCommand intakeCommand = new IntakeCommand(intake, feeder, led, pivot, elev
     //Intake
     //xbox.rightBumper().onTrue(intakeCommand);
     //Outtake
-
+    xbox.leftBumper().whileTrue(new ParallelCommandGroup(intake.outtakeCommand(),feeder.outtakeCommand(),pivot.intakePosition(),))
     //AmpOuttake
     //Pivot Up
     //Pivot Down
