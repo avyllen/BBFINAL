@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Commands.IntakeCommand;
 import frc.robot.Commands.PivotwithSpeed;
 import frc.robot.Commands.TELEShootCommand;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -26,16 +27,19 @@ public class RobotContainer {
   private final CommandJoystick joystick = new CommandJoystick(1);
 
  //intake Subsystem
- //public final IntakeSubsystem intake = new IntakeSubsystem();
+ public final IntakeSubsystem intake = new IntakeSubsystem();
 
   //shooter Subsystem
-  public final ShooterSubsystem shooter = new ShooterSubsystem();
+  //public final ShooterSubsystem shooter = new ShooterSubsystem();
 
   //Feeder Subsystem
   public final FeederSubsystem feeder = new FeederSubsystem();
 
+  //Elevator Subsystem
+  public final ElevatorSubsystem elevator = new ElevatorSubsystem();
+
   //pivot Subsystem
-  //public final PivotSubsystem pivot = new PivotSubsystem();
+  public final PivotSubsystem pivot = new PivotSubsystem();
   //public final PivotwithSpeed pivotup = new PivotwithSpeed(pivot,.1);
   //public final PivotwithSpeed pivotdown = new PivotwithSpeed(pivot,-.1);
 
@@ -49,7 +53,8 @@ public class RobotContainer {
   private final LEDSubsystem led = new LEDSubsystem(1);
 
   //Complex Commands
-  TELEShootCommand  teleShootCommand = new TELEShootCommand(shooter,feeder,led);
+//TELEShootCommand  teleShootCommand = new TELEShootCommand(shooter,feeder,led);
+IntakeCommand intakeCommand = new IntakeCommand(intake, feeder, led, pivot, elevator);
 
   
   public RobotContainer() {    
@@ -62,19 +67,21 @@ public class RobotContainer {
 
 
     //Default Commands
-    shooter.setDefaultCommand(shooter.withDisable());
+   // shooter.setDefaultCommand(shooter.withDisable());
     feeder.setDefaultCommand(feeder.withDisable());
-    //intake.setDefaultCommand(intake.withDisable());
-    //pivot.setDefaultCommand(pivot.holdPosition());
-    //elevator.setDefaultCommand(elevator.holdPosition());
+    intake.setDefaultCommand(intake.withDisable());
+    pivot.setDefaultCommand(pivot.holdPosition());
+    elevator.setDefaultCommand(elevator.holdPosition());
     //climber.setDefaultCommand(climber.stop());
 
 
 
     //Drive Controls
-    xbox.rightTrigger().onTrue(teleShootCommand); //Shoot
+   // xbox.rightTrigger().onTrue(teleShootCommand); //Shoot
     //Intake
+    //xbox.rightBumper().onTrue(intakeCommand);
     //Outtake
+
     //AmpOuttake
     //Pivot Up
     //Pivot Down

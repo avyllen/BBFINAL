@@ -17,13 +17,13 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   public static final class IntakeConstants{
-    public static final int intakeID = 3;
+    public static final int intakeID = 1;
     public static final int intakeSpeed = -50;
     public static final int outtakeSpeed = 50;
 
   }
   public static final class ShooterConstants {
-    public static final int topShooter = 1;
+    public static final int topShooter = 3;
     public static final int botShooter = 2;
     public static final int shootSpeed = 100;
 }
@@ -42,7 +42,7 @@ public static final class PivotConstants {
 }
 public static final class ElevatorConstants {
         
-  public static final int leftElevator = 2;
+  public static final int leftElevator = 14;
   public static final double eHomePos = 0;
   public static final double eUpPos = 100;
   public static final double eClimbPos = 25;
