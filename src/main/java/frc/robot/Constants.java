@@ -39,6 +39,12 @@ public static final class PivotConstants {
         
   public static final int pivot = 2;
   public static final int pivotspeed = 80;
+  public static final int homePosition = 0;
+  public static final int intakePosition = 9;
+  public static final int subwooferShotPosition = 25;
+  public static final int farShot = 28;
+  public static final int elevatorSubwooferShotPosition = 25;
+  public static final int elevatorFarShot = 28;
 }
 public static final class ElevatorConstants {
         
