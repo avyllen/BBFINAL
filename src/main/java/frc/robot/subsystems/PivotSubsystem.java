@@ -83,12 +83,12 @@ public Command withPosition(double setPoint)
   return run(() -> this.setPosition(setPoint));
 }
 
-public Command intakePosition()
+public Command intakePositionCommand()
 {
   return run(() -> this.setPosition(9.95));
 }
 
-public Command subwooferPosition()
+public Command subwooferPositionCommand()
 {
   return run(() -> this.setPosition(12.5));
 }

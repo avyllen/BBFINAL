@@ -82,11 +82,12 @@ IntakeCommand intakeCommand = new IntakeCommand(intake, feeder, led, pivot, elev
     //Intake
     //xbox.rightBumper().onTrue(intakeCommand);
     //Outtake
-    xbox.leftBumper().whileTrue(new ParallelCommandGroup(intake.outtakeCommand(),feeder.outtakeCommand(),pivot.intakePosition(),))
+    xbox.leftBumper().whileTrue(new ParallelCommandGroup(intake.outtakeCommand(),feeder.outtakeCommand(),pivot.intakePositionCommand()));
     //AmpOuttake
     //Pivot Up
     //Pivot Down
     //Positions
+   // xbox.y().onTrue(pivot.intakePositionCommand());
     //Lock Wheels?
     //Set Field Orientation
 
