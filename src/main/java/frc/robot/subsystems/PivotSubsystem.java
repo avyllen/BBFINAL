@@ -93,6 +93,10 @@ public Command subwooferPositionCommand()
   return run(() -> this.setPosition(12.5));
 }
 
+public Command ampPositionCommand()
+{
+  return run(() -> this.setPosition(12.5)); //amp stuff
+}
 
 public Command slowUp()
 {
