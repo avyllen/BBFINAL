@@ -78,7 +78,6 @@ public boolean LimitChecks()
 return ((m_encoder.getPosition() < 0.4 && m_pivot.getAppliedOutput() < 0) || (m_encoder.getPosition() > PivotConstants.PIVOTMAX && m_pivot.getAppliedOutput() > 0));
 }
 
-
 public Command withPosition(double setPoint)
 {
   return run(() -> this.setPosition(setPoint));

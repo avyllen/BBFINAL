@@ -112,6 +112,16 @@ public class RobotContainer {
 
     
 
+    //TEST CODE
+    //Run Intake -
+    //Run Outtake -
+    //Run Feeder -
+    //Run Feeder outtake -
+    //Run Pivot - using pivot with speed
+    //Run Elevator - using elevator with speed
+    //RunShooter -
+    //Run Climber -
+
   }
 
   public Command getAutonomousCommand() {

@@ -2,27 +2,36 @@
 Code for Beach Blitz
 
 # Subsytems
-- Intake
-	- Motors (Type, MotorController, ID's) (Link)
-- Shooter
-	 - Motors
-- Feeder
-	- Motors
-- Climber
-	- Motors
-- Pivot
-	- Motors
-- Elevator
-	- Motors
-- Swerve
-	 - Motors
+- Example
+    - Motors (Type, MotorController, ID's) (Link)
+    - Type
+ - Shooter
+    - Falcon 500 (2) - w/ TalonFX (https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/?srsltid=AfmBOopew5SBg2EtIwf_ElOSiSPYgvw4FTArOXobZYlTW48P1Q2gk_Og)
+ - Intake
+    - Falcon 500 (1) - w/ TalonFX (https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/?srsltid=AfmBOopew5SBg2EtIwf_ElOSiSPYgvw4FTArOXobZYlTW48P1Q2gk_Og)
+ - Climber
+    - NEO Motor Brushless (2) (https://www.revrobotics.com/rev-21-1650/)
+        - w/ CAN Spark MAX (2) (https://www.revrobotics.com/rev-11-2158/)
+ - Pivot
+    - NEO Motor Brushless (1) (https://www.revrobotics.com/rev-21-1650/)
+        -w/ CAN Spark Max (1) (https://www.revrobotics.com/rev-11-2158/)
+ - Elevator
+    - NEO Vortex (1) (https://www.revrobotics.com/rev-21-1652/)
+        - w/ Spark FLEX (1) (https://www.revrobotics.com/rev-11-2159/)
+ - Feeder
+    - 775 Pro (1) (https://www.vexrobotics.com/775pro.html)
+        - w/ TalonSRX (1) (https://store.ctr-electronics.com/talon-srx/)
+    - Linebreak Sensor(https://www.adafruit.com/product/2168)
+ - Swerve
+    - - Kraken X60 (4) - w/TalonFX (https://store.ctr-electronics.com/kraken-x60/?srsltid=AfmBOor8gJLXZfNRQd3FQh5aWSDHC9i9Dy31JsVEJrCqMMtga1vjYfOE) 
+    - - Falcon 500 (4) - w/ TalonFX (https://store.ctr-electronics.com/falcon-500-powered-by-talon-fx/?srsltid=AfmBOopew5SBg2EtIwf_ElOSiSPYgvw4FTArOXobZYlTW48P1Q2gk_Og)
 
 Sensors
-- Line Break (Link to product)
-- Pidgeon (Link to Product)
+- Line Break (https://www.adafruit.com/product/2168)
+- Pidgeon (https://store.ctr-electronics.com/pigeon-2/)
 
 Other Devices
-- Canivor (Link To Product)
+- Canivore (https://store.ctr-electronics.com/canivore/?srsltid=AfmBOoqX8jT-_6fvp3mNwteccb0lJ9VdAZm49JndbMDarxtyyLFkmpIo)
 
 ## Complex Commands
 Intake (Intake,Feeder,Pivot,Elevator)
@@ -87,3 +96,26 @@ Testing Procedure
 Assumptions
     - Pivot goes positive to max
     - Elevator goes Negative to max
+
+
+What we gotta do
+
+Set Motor ID'S / Update Motors
+Get Limits
+Test Each Subsystem
+Test LED
+Test Complex Commands
+    - Shoot
+        BEFORE YOU DO THIS get the Encoder value for Pivot and ELEVATOR
+    - Intake
+    - AMP Position
+Calibrate Swerve
+Merge new SWERVE with this code
+Create a setField Orientation command
+//  NamedCommands.registerCommand("setFieldRelative",drivetrain.runOnce(() ->  drivetrain.seedFieldRelative()));
+
+
+
+Other Things
+    - Get backup motors ready
+    - get backup Radio / Roborio ready
