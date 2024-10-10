@@ -45,6 +45,9 @@ public static final class PivotConstants {
   public static final int farShot = 28;
   public static final int elevatorSubwooferShotPosition = 25;
   public static final int elevatorFarShot = 28;
+  public static final int PIVOTMAX = 1;
+
+
 }
 public static final class ElevatorConstants {
         
@@ -52,6 +55,8 @@ public static final class ElevatorConstants {
   public static final double eHomePos = 0;
   public static final double eUpPos = 100;
   public static final double eClimbPos = 25;
+  public static final double ELEVATORMAX = 100;
+
 }
 public static final class ClimberConstants
 {

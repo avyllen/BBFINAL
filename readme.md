@@ -69,3 +69,21 @@ Xbox
     - DPad - Up/Down Pivot
 
 Joystick
+
+
+
+Testing Procedure
+    Get Limits
+        Phoenix Tuner / Rev
+        1. Set Motors to Coast mode
+        2. Figure out Home(0) Position
+        3. Set Encoder to 0
+        4. Move Pivot / Elevator to Max Position
+        5. Check if it is going Positive or Negative
+        5. Record Encoder Count
+        6. Repeat 3x take the *lowest value
+        7 Set Max Limit Variable
+
+Assumptions
+    - Pivot goes positive to max
+    - Elevator goes Negative to max

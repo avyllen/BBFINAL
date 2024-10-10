@@ -140,7 +140,7 @@ public Command setClimbPosition()
 
 public boolean LimitChecks()
 {
-return ((l_encoder.getPosition() > -1.5 && m_leftElevator.getAppliedOutput() > 0) || (l_encoder.getPosition() < -50 && m_leftElevator.getAppliedOutput() < 0));
+return ((l_encoder.getPosition() > -1.5 && m_leftElevator.getAppliedOutput() > 0) || (l_encoder.getPosition() < ElevatorConstants.ELEVATORMAX && m_leftElevator.getAppliedOutput() < 0));
 }
 
 @Override

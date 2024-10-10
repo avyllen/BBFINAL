@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PivotConstants;
 
 public class PivotSubsystem extends SubsystemBase {
 
@@ -74,7 +75,7 @@ public void otherPositions()
 
 public boolean LimitChecks()
 {
-return ((m_encoder.getPosition() < 0.7 && m_pivot.getAppliedOutput() < 0) || (m_encoder.getPosition() > 37 && m_pivot.getAppliedOutput() > 0));
+return ((m_encoder.getPosition() < 0.4 && m_pivot.getAppliedOutput() < 0) || (m_encoder.getPosition() > PivotConstants.PIVOTMAX && m_pivot.getAppliedOutput() > 0));
 }
 
 
