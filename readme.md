@@ -103,18 +103,31 @@ What we gotta do
 Set Motor ID'S / Update Motors
 Get Limits
 Test Each Subsystem
-Test LED
 Test Complex Commands
     - Shoot
+    Test LED
         BEFORE YOU DO THIS get the Encoder value for Pivot and ELEVATOR
     - Intake
     - AMP Position
 Calibrate Swerve
 Merge new SWERVE with this code
 Create a setField Orientation command
-//  NamedCommands.registerCommand("setFieldRelative",drivetrain.runOnce(() ->  drivetrain.seedFieldRelative()));
+//NamedCommands.registerCommand("setFieldRelative",drivetrain.runOnce(() ->  drivetrain.seedFieldRelative()));
 
-
+CHASE
+Drive around make sure Swerve works
+Intake
+    - Intake normal
+    - Intake agaisnt a wall
+    - Shoot Agaisnt the subwoofer
+    - Scoring the AMP
+    - Shooting with the Elevator up
+    - Climbing
+Auto
+    - 1 Note
+    - 4 note
+    - Outside
+    - Defence
 
 Other Things
     - Get backup motors ready
