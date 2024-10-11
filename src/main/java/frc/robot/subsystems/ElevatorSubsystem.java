@@ -139,12 +139,12 @@ public Command holdPosition()
 
 public Command setHomePosition()
 {
-  return run(() -> this.setHomePosition().until(()-> this.CheckPositionHome())); // need to find
+  return run(() -> this.setHomePosition()/* .until(()-> this.CheckPositionHome())*/); // need to find
 }
 
 public Command setAMPPosition()
 {
-  return run(() -> this.ampPosition()).until(() -> this.CheckPositionAmp()); // need to find
+  return run(() -> this.ampPosition()/* ).until(() -> this.CheckPositionAmp()*/); // need to find
 }
 
 
