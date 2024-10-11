@@ -73,7 +73,7 @@ public class RobotContainer {
     intake.setDefaultCommand(intake.withDisable());
     pivot.setDefaultCommand(pivot.holdPosition());
     elevator.setDefaultCommand(elevator.holdPosition());
-    //climber.setDefaultCommand(climber.stop());
+    climber.setDefaultCommand(climber.stop());
 
 
 
@@ -96,7 +96,8 @@ public class RobotContainer {
     //Lock Wheels?
     //Set Field Orientation
 
-    //Operator Controls
+    //Operator Controls //
+
     // //Climb Set Up
     // joystick.button(5).onTrue(climber.setUpPosition());
     // //Climb All the way
@@ -112,15 +113,34 @@ public class RobotContainer {
 
     
 
-    //TEST CODE
+    //TEST CODE//
+    
     //Run Intake -
+    xbox.rightTrigger().whileTrue(intake.intakeCommand());
+
     //Run Outtake -
+    xbox.rightTrigger().whileTrue(intake.outtakeCommand());
+
     //Run Feeder -
+    xbox.rightTrigger().whileTrue(feeder.intakeCommand());
+
     //Run Feeder outtake -
+    xbox.rightTrigger().whileTrue(feeder.outtakeCommand());
+
     //Run Pivot - using pivot with speed
+    xbox.pov(0).whileTrue(pivotUp);
+    xbox.pov(180).whileTrue(pivotDown);
+
     //Run Elevator - using elevator with speed
+    xbox.pov(0).whileTrue(elevatorUp);
+    xbox.pov(180).whileTrue(elevatorDown);
+
     //RunShooter -
+    xbox.rightTrigger().whileTrue(shooter.shoot());
+
     //Run Climber -
+    xbox.pov(0).whileTrue(climber.slowUp());
+    xbox.pov(180).whileTrue(climber.slowDown());
 
   }
 

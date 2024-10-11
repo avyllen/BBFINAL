@@ -32,7 +32,7 @@ private GenericEntry elevatorVoltage =
   /** Creates a new ElevatorSubsystem. */
   public ElevatorSubsystem() {
 
-    m_leftElevator = new CANSparkFlex(ElevatorConstants.leftElevator, MotorType.kBrushless);
+    m_leftElevator = new CANSparkFlex(ElevatorConstants.leftElevatorID, MotorType.kBrushless);
     m_leftElevator.restoreFactoryDefaults();
     m_leftElevator.setIdleMode(IdleMode.kBrake);
 
@@ -83,6 +83,11 @@ public void homePosition()
     l_pidController.setReference(ElevatorConstants.eHomePos, CANSparkMax.ControlType.kPosition);
 }
 
+public void ampPosition()
+{
+  l_pidController.setReference(ElevatorConstants.eAmp, CANSparkMax.ControlType.kPosition);
+}
+
 public double getEncoder()
 {
   return l_encoder.getPosition();
@@ -129,7 +134,7 @@ public Command setHomePosition()
 
 public Command setUpPosition()
 {
-  return run(() -> this.setPosition(ElevatorConstants.eUpPos)); // need to find
+  return run(() -> this.ampPosition()); // need to find
 }
 
 
