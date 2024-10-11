@@ -32,7 +32,7 @@ private GenericEntry elevatorVoltage =
   /** Creates a new ElevatorSubsystem. */
   public ElevatorSubsystem() {
 
-    m_leftElevator = new CANSparkFlex(ElevatorConstants.leftElevatorID, MotorType.kBrushless);
+    m_leftElevator = new CANSparkFlex(ElevatorConstants.leftElevator, MotorType.kBrushless);
     m_leftElevator.restoreFactoryDefaults();
     m_leftElevator.setIdleMode(IdleMode.kBrake);
 

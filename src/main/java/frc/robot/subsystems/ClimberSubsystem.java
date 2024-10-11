@@ -29,7 +29,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
   /** Creates a new ClimberSubsystem. */
   public ClimberSubsystem() {
-    m_climber = new CANSparkMax(ClimberConstants.climberID, MotorType.kBrushless);
+    m_climber = new CANSparkMax(ClimberConstants.climber, MotorType.kBrushless);
     m_climber2 = new CANSparkMax(ClimberConstants.climber2, MotorType.kBrushless);
 
 

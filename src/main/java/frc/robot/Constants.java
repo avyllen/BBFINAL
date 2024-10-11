@@ -37,7 +37,7 @@ public static final class FeederConstants {
 }
 public static final class PivotConstants {
         
-  public static final int pivotID = 2;
+  public static final int pivot = 2;
   public static final int pivotspeed = 80;
   public static final int homePosition = 0;
   public static final int intakePosition = 9;
@@ -51,7 +51,7 @@ public static final class PivotConstants {
 }
 public static final class ElevatorConstants {
         
-  public static final int leftElevatorID = 14;
+  public static final int leftElevator = 14;
   public static final double eHomePos = 0;
   public static final double eAmp = 100;
   public static final double eClimbPos = 25;
@@ -60,7 +60,7 @@ public static final class ElevatorConstants {
 }
 public static final class ClimberConstants
 {
-  public static final int climberID = 14;
+  public static final int climber = 14;
   public static final int climber2 = 2;
   public static final int cHomePos = 0;
   public static final int cUpPose = 61;
