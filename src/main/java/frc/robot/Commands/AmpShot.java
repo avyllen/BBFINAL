@@ -29,7 +29,7 @@ public class AmpShot extends Command {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return elevator.CheckPositionHome();
   }
 
   // Called once the command ends or is interrupted.

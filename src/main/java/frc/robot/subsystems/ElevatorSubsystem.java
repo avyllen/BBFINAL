@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -48,7 +49,7 @@ private GenericEntry elevatorVoltage =
      l_encoder = m_leftElevator.getEncoder();
   
      // PID coefficients
-     kP = 0.02; 
+     kP = 0.01; 
      kI = 0;
      kD = 0; 
      kIz = 0; 
@@ -71,6 +72,15 @@ public void setVelocity(double setPoint)
 {
   m_leftElevator.set(-setPoint);
        SmartDashboard.putNumber("Right Drive Encoder", l_encoder.getPosition());
+}
+
+public boolean CheckPositionAmp()
+{
+ return MathUtil.isNear(ElevatorConstants.eAmp,m_leftElevator.getEncoder().getPosition(), 1);
+}
+public boolean CheckPositionHome()
+{
+ return MathUtil.isNear(ElevatorConstants.eHomePos,m_leftElevator.getEncoder().getPosition(), 1);
 }
 
 private void setPosition(double setPoint)
@@ -129,12 +139,12 @@ public Command holdPosition()
 
 public Command setHomePosition()
 {
-  return run(() -> this.setHomePosition()); // need to find
+  return run(() -> this.setHomePosition().until(()-> this.CheckPositionHome())); // need to find
 }
 
-public Command setUpPosition()
+public Command setAMPPosition()
 {
-  return run(() -> this.ampPosition()); // need to find
+  return run(() -> this.ampPosition()).until(() -> this.CheckPositionAmp()); // need to find
 }
 
 

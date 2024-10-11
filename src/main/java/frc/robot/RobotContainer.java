@@ -102,7 +102,7 @@ public class RobotContainer {
     // joystick.button(5).onTrue(climber.setUpPosition());
     // //Climb All the way
     // //Elevator Position Up
-    // joystick.button(3).onTrue(elevator.setUpPosition());
+    // joystick.button(3).onTrue(elevator.setAMPPosition());
     // //Elevator Position Down
     // joystick.button(4).onTrue(elevator.setHomePosition());
     // //Elevator Manual Up
