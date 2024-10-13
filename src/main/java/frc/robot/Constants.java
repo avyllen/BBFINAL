@@ -18,34 +18,34 @@ public final class Constants {
   }
   public static final class IntakeConstants{
     public static final int intakeID = 31;
-    public static final int intakeSpeed = -50;
-    public static final int outtakeSpeed = 50;
+    public static final int intakeSpeed = -20;
+    public static final int outtakeSpeed = 20;
 
   }
   public static final class ShooterConstants {
     public static final int topShooter = 34;
     public static final int botShooter = 33;
-    public static final int shootSpeed = 100;
+    public static final int shootSpeed = 10;
 }
 public static final class FeederConstants {
   public static final int feederID = 32;
   public static final int feederEncoderA = 5;
   public static final int feederEncoderB = 6;
-  public static final double IntakeSPEED = .32;
-  public static final double OutakeSPEED = -.32;
+  public static final double IntakeSPEED = .2;
+  public static final double OutakeSPEED = -.2;
   public static final double ampOutakeSPEED = -.32;
 }
 public static final class PivotConstants {
         
   public static final int pivot = 40;
-  public static final int pivotspeed = 80;
-  public static final int homePosition = 0;
+  public static final int pivotspeed = 20;
+  public static final double homePosition = 0.1;
   public static final int intakePosition = -10;
   public static final int subwooferShotPosition = -10;
   public static final int farShot = -10;
   public static final int elevatorSubwooferShotPosition = -10;
   public static final int elevatorFarShot = -10;
-  public static final int PIVOTMAX = -20;
+  public static final double PIVOTMAX = 18.5;
 
 
 }
@@ -53,7 +53,7 @@ public static final class ElevatorConstants {
         
   public static final int leftElevator = 14;
   public static final double eHomePos = 0;
-  public static final double eAmp = -25;
+  public static final double eAmp = -40;
   public static final double eClimbPos = -25;
   public static final double ELEVATORMAX = -50.21;
 
@@ -61,7 +61,6 @@ public static final class ElevatorConstants {
 public static final class ClimberConstants
 {
   public static final int climber = 41;
-  public static final int climber2 = 2;
   public static final int cHomePos = 0;
   public static final int cUpPose = 61;
   public static final int cClimbPos = 100; 

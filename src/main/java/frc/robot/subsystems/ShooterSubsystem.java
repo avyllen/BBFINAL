@@ -66,8 +66,8 @@ private GenericEntry bottomShooterVoltage =
 }
   public void setVelocity(double desiredRotationsPerSecond)
   {
-      m_topSh.setControl(m_voltageVelocity.withVelocity(desiredRotationsPerSecond));
-      m_botSh.setControl(m_voltageVelocity.withVelocity(desiredRotationsPerSecond));
+      m_topSh.setControl(m_voltageVelocity.withVelocity(-desiredRotationsPerSecond));
+      m_botSh.setControl(m_voltageVelocity.withVelocity(-desiredRotationsPerSecond));
   }
   private void setVelocityDiff(double TOPdesiredRotationsPerSecond,double BOTdesiredRotationsPerSecond)
   {

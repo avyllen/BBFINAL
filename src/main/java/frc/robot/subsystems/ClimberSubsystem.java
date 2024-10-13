@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimberSubsystem extends SubsystemBase { 
   private CANSparkMax m_climber;
-  private CANSparkMax m_climber2;
   private SparkPIDController c_pidController;
   private SparkPIDController c_pidController2;
 
@@ -30,14 +29,12 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
   public ClimberSubsystem() {
     m_climber = new CANSparkMax(ClimberConstants.climber, MotorType.kBrushless);
-    m_climber2 = new CANSparkMax(ClimberConstants.climber2, MotorType.kBrushless);
 
 
     m_climber.restoreFactoryDefaults();
     m_climber.setIdleMode(IdleMode.kBrake);
 
-    m_climber2.restoreFactoryDefaults();
-    m_climber2.setIdleMode(IdleMode.kBrake);
+
 
 
     /**
@@ -46,11 +43,9 @@ public class ClimberSubsystem extends SubsystemBase {
        * CANSparkMax object
        */
     c_pidController = m_climber.getPIDController();
-    c_pidController2 = m_climber2.getPIDController();
   
      // Encoder object created to display position values
      c_encoder = m_climber.getEncoder();
-     c_encoder2 = m_climber2.getEncoder();
 
   
      // PID coefficients
@@ -71,34 +66,25 @@ public class ClimberSubsystem extends SubsystemBase {
      c_pidController.setFF(kFF);
      c_pidController.setOutputRange(kMinOutput, kMaxOutput);
 
-     c_pidController2.setP(kP);
-     c_pidController2.setI(kI);
-     c_pidController2.setD(kD);
-     c_pidController2.setIZone(kIz);
-     c_pidController2.setFF(kFF);
-     c_pidController2.setOutputRange(kMinOutput, kMaxOutput);
+     
   
   }
   private void resetEnc()
   {
     c_encoder.setPosition(0);
-    c_encoder2.setPosition(0);
 
   }
   
   private void setVelocity(double setPoint)
   {
     m_climber.set(-setPoint);
-    m_climber2.set(-setPoint);
    SmartDashboard.putNumber("Right Drive Encoder", c_encoder.getPosition());
-   SmartDashboard.putNumber("Left Drive Encoder", c_encoder2.getPosition());
 
   }
   
   private void setPosition(double setPoint)
   {
     c_pidController.setReference(setPoint, CANSparkMax.ControlType.kPosition);
-    c_pidController2.setReference(setPoint, CANSparkMax.ControlType.kPosition);
 
   }
   
@@ -109,7 +95,7 @@ public class ClimberSubsystem extends SubsystemBase {
   
   public Command slowUp()
   {
-    return run(() -> this.setVelocity(.8));
+    return run(() -> this.setVelocity(.1));
   }
   
   public Command slowDown()
@@ -146,7 +132,6 @@ public class ClimberSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   SmartDashboard.putNumber("Climber1 Pivot Encoder", c_encoder.getPosition());
-  SmartDashboard.putNumber("Climber2 Pivot Encoder", c_encoder2.getPosition());
   }
   
   }

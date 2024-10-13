@@ -38,13 +38,13 @@ public class RobotContainer {
   public final FeederSubsystem feeder = new FeederSubsystem();
   //Elevator Subsystem
   public final ElevatorSubsystem elevator = new ElevatorSubsystem();
-  public final ElevatorWithSpeed elevatorUp = new ElevatorWithSpeed(elevator, .1);
-  public final ElevatorWithSpeed elevatorDown = new ElevatorWithSpeed(elevator, -.1);
+  public final ElevatorWithSpeed elevatorUp = new ElevatorWithSpeed(elevator, -1);
+  public final ElevatorWithSpeed elevatorDown = new ElevatorWithSpeed(elevator, 1);
 
   //pivot Subsystem
   public final PivotSubsystem pivot = new PivotSubsystem();
-  public final PivotwithSpeed pivotUp = new PivotwithSpeed(pivot,.1);
-  public final PivotwithSpeed pivotDown = new PivotwithSpeed(pivot,-.1);
+  public final PivotwithSpeed pivotUp = new PivotwithSpeed(pivot,-.2);
+  public final PivotwithSpeed pivotDown = new PivotwithSpeed(pivot,.2);
 
   //Climber SUBSYSTEM
   public final ClimberSubsystem climber = new ClimberSubsystem();
@@ -68,7 +68,7 @@ public class RobotContainer {
 
 
     //Default Commands
-   // shooter.setDefaultCommand(shooter.withDisable());
+    shooter.setDefaultCommand(shooter.withDisable());
     feeder.setDefaultCommand(feeder.withDisable());
     intake.setDefaultCommand(intake.withDisable());
     pivot.setDefaultCommand(pivot.holdPosition());
@@ -80,19 +80,19 @@ public class RobotContainer {
     //Drive Controls
     
     //Shoot
-    xbox.rightTrigger().onTrue(teleShootCommand); 
-    //Intake
-    xbox.rightBumper().onTrue(intakeCommand);
-    //Outtake
-    xbox.leftBumper().whileTrue(new ParallelCommandGroup(intake.outtakeCommand(),feeder.outtakeCommand(),pivot.intakePositionCommand()));
-    //AmpOuttake
-    //Pivot Up
-    xbox.pov(0).whileTrue(pivotUp);
-    //Pivot Down
-    xbox.pov(180).whileTrue(pivotDown);
-    //Positions
-    xbox.y().onTrue(pivot.intakePositionCommand());
-    xbox.a().onTrue(pivot.subwooferPositionCommand());
+    // xbox.rightTrigger().onTrue(teleShootCommand); 
+    // //Intake
+    // xbox.rightBumper().onTrue(intakeCommand);
+    // //Outtake
+    // xbox.leftBumper().whileTrue(new ParallelCommandGroup(intake.outtakeCommand(),feeder.outtakeCommand(),pivot.intakePositionCommand()));
+    // //AmpOuttake
+    // //Pivot Up
+    // xbox.pov(0).whileTrue(pivotUp);
+    // //Pivot Down
+    // xbox.pov(180).whileTrue(pivotDown);
+    // //Positions
+    // xbox.y().onTrue(pivot.intakePositionCommand());
+    // xbox.a().onTrue(pivot.subwooferPositionCommand());
     //Lock Wheels?
     //Set Field Orientation
 
@@ -122,32 +122,36 @@ public class RobotContainer {
 
     //TEST CODE//
     
-    //Run Intake -
-    xbox.rightTrigger().whileTrue(intake.intakeCommand());
+   // Run Intake -
+   // xbox.rightTrigger().whileTrue(intake.intakeCommand());
 
-    //Run Outtake -
-    xbox.rightTrigger().whileTrue(intake.outtakeCommand());
+    // //Run Outtake -
+    // xbox.rightTrigger().whileTrue(intake.outtakeCommand());
 
-    //Run Feeder -
-    xbox.rightTrigger().whileTrue(feeder.intakeCommand());
+    // //Run Feeder -
+    // xbox.rightTrigger().whileTrue(feeder.intakeCommand());
 
-    //Run Feeder outtake -
-    xbox.rightTrigger().whileTrue(feeder.outtakeCommand());
+    // //Run Feeder outtake -
+    // xbox.leftTrigger().whileTrue(feeder.outtakeCommand());
 
-    //Run Pivot - using pivot with speed
+    // //Run Pivot - using pivot with speed
     xbox.pov(0).whileTrue(pivotUp);
     xbox.pov(180).whileTrue(pivotDown);
+   xbox.a().onTrue(pivot.subwooferPositionCommand());
+   xbox.b().onTrue(pivot.setHomePositionCommand());
 
     //Run Elevator - using elevator with speed
-    xbox.pov(0).whileTrue(elevatorUp);
-    xbox.pov(180).whileTrue(elevatorDown);
+    // xbox.pov(0).whileTrue(elevatorUp);
+    // xbox.pov(180).whileTrue(elevatorDown);
+    // xbox.a().onTrue(elevator.setAMPPosition());
+    // xbox.b().onTrue(elevator.setHomePosition());
 
-    //RunShooter -
-    xbox.rightTrigger().whileTrue(shooter.shoot());
+    // //RunShooter -
+    // xbox.rightTrigger().whileTrue(shooter.shoot());
 
-    //Run Climber -
-    xbox.pov(0).whileTrue(climber.slowUp());
-    xbox.pov(180).whileTrue(climber.slowDown());
+    // //Run Climber -
+    // xbox.rightBumper().whileTrue(climber.slowUp());
+    // xbox.leftBumper().whileTrue(climber.slowDown());
 
   }
 

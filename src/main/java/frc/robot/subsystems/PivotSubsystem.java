@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.PivotConstants;
 
 public class PivotSubsystem extends SubsystemBase {
@@ -29,13 +30,13 @@ public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
     m_encoder = m_pivot.getEncoder();
   
      // PID coefficients
-     kP = 0.01; 
+     kP = 0.11; 
      kI = 0;
      kD = 0; 
      kIz = 0; 
      kFF = 1/565; 
-     kMaxOutput = 1; 
-     kMinOutput = -1;
+     kMaxOutput = 0.3; 
+     kMinOutput = -0.3;
   
      // set PID coefficients
      m_pidController.setP(kP);
@@ -63,9 +64,15 @@ public void intakePosition()
   m_pidController.setReference(9.95, CANSparkMax.ControlType.kPosition);
 }
 
+public void homePosition()
+{
+  m_pidController.setReference(Constants.PivotConstants.homePosition, CANSparkMax.ControlType.kPosition);
+}
+
+
 public void subwooferPosition()
 {
-  m_pidController.setReference(12.5, CANSparkMax.ControlType.kPosition);
+  m_pidController.setReference(Constants.PivotConstants.subwooferShotPosition, CANSparkMax.ControlType.kPosition);
 }
 
 public void otherPositions()
@@ -75,7 +82,7 @@ public void otherPositions()
 
 public boolean LimitChecks()
 {
-return ((m_encoder.getPosition() < 0.4 && m_pivot.getAppliedOutput() < 0) || (m_encoder.getPosition() > PivotConstants.PIVOTMAX && m_pivot.getAppliedOutput() > 0));
+return ((-m_encoder.getPosition() < 0.4 && m_pivot.getAppliedOutput() > 0) || (-m_encoder.getPosition() > PivotConstants.PIVOTMAX && m_pivot.getAppliedOutput() < 0));
 }
 
 public Command withPosition(double setPoint)
@@ -90,7 +97,7 @@ public Command intakePositionCommand()
 
 public Command subwooferPositionCommand()
 {
-  return run(() -> this.setPosition(12.5));
+  return run(() -> this.setPosition(Constants.PivotConstants.elevatorSubwooferShotPosition));
 }
 
 public Command ampPositionCommand()
@@ -98,6 +105,10 @@ public Command ampPositionCommand()
   return run(() -> this.setPosition(12.5)); //amp stuff
 }
 
+public Command setHomePositionCommand()
+{
+  return run(() -> this.setPosition(Constants.PivotConstants.homePosition)); //amp stuff
+}
 public Command slowUp()
 {
   return run(() -> this.setVelocity(.1));

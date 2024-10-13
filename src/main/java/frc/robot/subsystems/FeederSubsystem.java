@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix6.controls.NeutralOut;
 import com.ctre.phoenix6.controls.VelocityVoltage;
+import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.networktables.GenericEntry;
@@ -18,11 +19,12 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.FeederConstants;
 
 public class FeederSubsystem  extends SubsystemBase{
  
-private final WPI_TalonSRX  m_feeder;
+private final TalonFX  m_feeder;
 
 private final VelocityVoltage m_voltageVelocity = new VelocityVoltage(0, 0, true, 0, 0, false, false, false);
 
@@ -42,7 +44,7 @@ private GenericEntry feederVoltage =
     
 public FeederSubsystem()
 {
-       m_feeder = new WPI_TalonSRX(FeederConstants.feederID);
+       m_feeder = new TalonFX(Constants.FeederConstants.feederID);
        intakeLine = new DigitalInput(0);
        outLine = new DigitalOutput(1); 
 
@@ -102,8 +104,8 @@ public Command withDisable()
 public void periodic() {
   // This method will be called once per scheduler run
 SmartDashboard.putBoolean("FEEDER NOTE CHECK", intakeLine.get());
-feederVoltage.setDouble(m_feeder.getMotorOutputVoltage());
-feederSpeed.setDouble(m_feeder.getMotorOutputPercent());
+feederVoltage.setDouble(m_feeder.getMotorVoltage().getValue());
+feederSpeed.setDouble(m_feeder.getMotorVoltage().getValue());
 outLine.set(true);
 
 }

@@ -49,13 +49,13 @@ private GenericEntry elevatorVoltage =
      l_encoder = m_leftElevator.getEncoder();
   
      // PID coefficients
-     kP = 0.01; 
+     kP = 0.07; 
      kI = 0;
      kD = 0; 
      kIz = 0; 
      kFF = 1/565; 
-     kMaxOutput = 1; 
-     kMinOutput = -1;
+     kMaxOutput = 0.25; // this is the down motion 
+     kMinOutput = -0.7;
      maxRPM = 5700;
   
      // Set PID coefficients
@@ -71,6 +71,12 @@ private GenericEntry elevatorVoltage =
 public void setVelocity(double setPoint)
 {
   m_leftElevator.set(-setPoint);
+       SmartDashboard.putNumber("Right Drive Encoder", l_encoder.getPosition());
+}
+
+public void setVoltage(double voltage)
+{
+  m_leftElevator.setVoltage(voltage);
        SmartDashboard.putNumber("Right Drive Encoder", l_encoder.getPosition());
 }
 
@@ -139,7 +145,7 @@ public Command holdPosition()
 
 public Command setHomePosition()
 {
-  return run(() -> this.setHomePosition()/* .until(()-> this.CheckPositionHome())*/); // need to find
+  return run(() -> this.homePosition()/* .until(()-> this.CheckPositionHome())*/); // need to find
 }
 
 public Command setAMPPosition()
@@ -163,6 +169,7 @@ public void periodic() {
   // This method will be called once per scheduler run
 
   elevatorEncoder.setDouble(l_encoder.getPosition());
+  SmartDashboard.putBoolean("limit checks", LimitChecks());
   elevatorVoltage.setDouble(m_leftElevator.getAppliedOutput());
 SmartDashboard.putNumber("Elevator Encoder", l_encoder.getPosition());
 SmartDashboard.putNumber("Elevator Appied Voltage", m_leftElevator.getAppliedOutput() );

@@ -15,13 +15,19 @@ public class ElevatorWithSpeed extends Command {
   public ElevatorWithSpeed(ElevatorSubsystem elevator,double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.elevator = elevator;
+    this.speed = speed;
     addRequirements(elevator);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    elevator.setVelocity(speed);
+   elevator.setVoltage(speed);
+  }
+
+  @Override
+  public void execute() {
+    elevator.setVoltage(speed);
   }
 
   // Returns true when the command should end.
