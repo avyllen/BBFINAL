@@ -19,10 +19,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ClimberSubsystem extends SubsystemBase { 
   private CANSparkMax m_climber;
   private SparkPIDController c_pidController;
-  private SparkPIDController c_pidController2;
 
   private RelativeEncoder c_encoder;
-  private RelativeEncoder c_encoder2;
 
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
 
