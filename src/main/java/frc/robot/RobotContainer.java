@@ -17,6 +17,7 @@ import frc.robot.Commands.TELEShootCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.FeederSubsystem;
+import frc.robot.subsystems.SRXSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
@@ -43,14 +44,14 @@ public class RobotContainer {
 
   //pivot Subsystem
   public final PivotSubsystem pivot = new PivotSubsystem();
-  public final PivotwithSpeed pivotUp = new PivotwithSpeed(pivot,.1);
-  public final PivotwithSpeed pivotDown = new PivotwithSpeed(pivot,-.1);
+  public final PivotwithSpeed pivotUp = new PivotwithSpeed(pivot,-.2);
+  public final PivotwithSpeed pivotDown = new PivotwithSpeed(pivot,.2);
 
   //Climber SUBSYSTEM
   public final ClimberSubsystem climber = new ClimberSubsystem();
 
   //LED SUBSYSTEM
-  private final LEDSubsystem led = new LEDSubsystem(1);
+  private final LEDSubsystem led = new LEDSubsystem(0);
 
   //Complex Commands
   TELEShootCommand  teleShootCommand = new TELEShootCommand(shooter,feeder,led);
@@ -68,7 +69,7 @@ public class RobotContainer {
 
 
     //Default Commands
-   // shooter.setDefaultCommand(shooter.withDisable());
+    shooter.setDefaultCommand(shooter.withDisable());
     feeder.setDefaultCommand(feeder.withDisable());
     intake.setDefaultCommand(intake.withDisable());
     pivot.setDefaultCommand(pivot.holdPosition());
@@ -83,16 +84,16 @@ public class RobotContainer {
     xbox.rightTrigger().onTrue(teleShootCommand); 
     //Intake
     xbox.rightBumper().onTrue(intakeCommand);
-    //Outtake
-    xbox.leftBumper().whileTrue(new ParallelCommandGroup(intake.outtakeCommand(),feeder.outtakeCommand(),pivot.intakePositionCommand()));
-    //AmpOuttake
+    // //Outtake
+    xbox.leftBumper().whileTrue(new ParallelCommandGroup(intake.outtakeCommand(),feeder.outtake(),pivot.intakePositionCommand()));
+    // //AmpOuttake
     //Pivot Up
     xbox.pov(0).whileTrue(pivotUp);
     //Pivot Down
     xbox.pov(180).whileTrue(pivotDown);
-    //Positions
-    xbox.y().onTrue(pivot.intakePositionCommand());
-    xbox.a().onTrue(pivot.subwooferPositionCommand());
+    // //Positions
+    // xbox.y().onTrue(pivot.intakePositionCommand());
+    // xbox.a().onTrue(pivot.subwooferPositionCommand());
     //Lock Wheels?
     //Set Field Orientation
 
@@ -104,18 +105,18 @@ public class RobotContainer {
     
     
     // //Elevator Position Up
-    // joystick.button(3).onTrue(elevator.setAMPPosition());
+    joystick.button(3).onTrue(elevator.setAMPPosition());
     // //Elevator Position Down
-    // joystick.button(4).onTrue(elevator.setHomePosition());
+    joystick.button(4).onTrue(elevator.setHomePosition());
 
     //Elevator AMP Position
-    //joystick.button(6).onTrue(new ParallelCommandGroup(elevator.setAMPPosition(),pivot.ampPositionCommand()));
+    joystick.button(6).onTrue(new ParallelCommandGroup(elevator.setAMPPosition(),pivot.ampPositionCommand()));
 
 
-    // //Elevator Manual Up
-    // joystick.pov(0).whileTrue(elevatorUp);
-    // //Elevator Manual Down
-    // joystick.pov(180).whileTrue(elevatorDown); 
+     //Elevator Manual Up
+    joystick.pov(0).whileTrue(elevatorUp);
+     //Elevator Manual Down
+    joystick.pov(180).whileTrue(elevatorDown); 
     // ** !!HAS TO BE TESTED!! ** //
 
     
@@ -123,31 +124,31 @@ public class RobotContainer {
     //TEST CODE//
     
     //Run Intake -
-    xbox.rightTrigger().whileTrue(intake.intakeCommand());
+    // xbox.rightTrigger().whileTrue(intake.intakeCommand());
 
-    //Run Outtake -
-    xbox.rightTrigger().whileTrue(intake.outtakeCommand());
+    // //Run Outtake -
+    // xbox.rightTrigger().whileTrue(intake.outtakeCommand());
 
-    //Run Feeder -
-    xbox.rightTrigger().whileTrue(feeder.intakeCommand());
+    // //Run Feeder -
+    // xbox.rightTrigger().whileTrue(feeder.intakeCommand());
 
-    //Run Feeder outtake -
-    xbox.rightTrigger().whileTrue(feeder.outtakeCommand());
+    // //Run Feeder outtake -
+    // xbox.rightTrigger().whileTrue(feeder.outtakeCommand());
 
-    //Run Pivot - using pivot with speed
-    xbox.pov(0).whileTrue(pivotUp);
-    xbox.pov(180).whileTrue(pivotDown);
+    // //Run Pivot - using pivot with speed
+    // xbox.pov(0).whileTrue(pivotUp);
+    // xbox.pov(180).whileTrue(pivotDown);
 
-    //Run Elevator - using elevator with speed
-    xbox.pov(0).whileTrue(elevatorUp);
-    xbox.pov(180).whileTrue(elevatorDown);
+    // //Run Elevator - using elevator with speed
+    // xbox.pov(0).whileTrue(elevatorUp);
+    // xbox.pov(180).whileTrue(elevatorDown);
 
-    //RunShooter -
-    xbox.rightTrigger().whileTrue(shooter.shoot());
+    // //RunShooter -
+    // xbox.rightTrigger().whileTrue(shooter.shoot());
 
-    //Run Climber -
-    xbox.pov(0).whileTrue(climber.slowUp());
-    xbox.pov(180).whileTrue(climber.slowDown());
+    // //Run Climber -
+    // xbox.pov(0).whileTrue(climber.slowUp());
+    // xbox.pov(180).whileTrue(climber.slowDown());
 
   }
 

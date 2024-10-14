@@ -15,6 +15,7 @@ public class ElevatorWithSpeed extends Command {
   public ElevatorWithSpeed(ElevatorSubsystem elevator,double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.elevator = elevator;
+    this.speed = speed;
     addRequirements(elevator);
   }
 
@@ -32,7 +33,8 @@ public class ElevatorWithSpeed extends Command {
    // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    elevator.setVelocity(0);
+    elevator.setHoldPosition(elevator.getEncoder());
+
   }
 
 }

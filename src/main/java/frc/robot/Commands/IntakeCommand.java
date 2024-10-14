@@ -7,6 +7,7 @@ import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.FeederSubsystem;
+import frc.robot.subsystems.SRXSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeCommand extends Command{
@@ -42,18 +43,18 @@ public class IntakeCommand extends Command{
   @Override
   public void execute()
   {
-    feeder.setVelocity(.33);
-    intake.setVelocity(-50);
+    feeder.setVelocity(-15);
+    intake.setVelocity(-20);
   }
 
       @Override
       public boolean isFinished() {
-          return feeder.noteCheck();
+          return !feeder.noteCheck();
       }
 
      @Override
      public void end(boolean interrupted) {
-      feeder.disable();
+      feeder.withDisable();
       intake.withDisable();
       elevator.holdPosition();
       pivot.setVelocity(0);

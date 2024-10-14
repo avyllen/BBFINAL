@@ -4,7 +4,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.ElevatorSubsystem;
-import frc.robot.subsystems.FeederSubsystem;
+import frc.robot.subsystems.SRXSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
 import frc.robot.subsystems.PivotSubsystem;
@@ -12,12 +12,12 @@ import frc.robot.subsystems.PivotSubsystem;
 
 public class IntakeCommandAuto extends Command{
     private final IntakeSubsystem intake;
-    private final FeederSubsystem feeder;
+    private final SRXSubsystem feeder;
     private final PivotSubsystem pivot;
     private final ElevatorSubsystem elevator;
     private final LEDSubsystem led;
 
-    public IntakeCommandAuto(IntakeSubsystem intake,FeederSubsystem feeder, LEDSubsystem led, PivotSubsystem pivot,ElevatorSubsystem elevator) {
+    public IntakeCommandAuto(IntakeSubsystem intake,SRXSubsystem feeder, LEDSubsystem led, PivotSubsystem pivot,ElevatorSubsystem elevator) {
         this.intake = intake;
         this.feeder = feeder;
         this.pivot = pivot;

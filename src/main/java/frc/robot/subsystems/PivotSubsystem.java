@@ -29,13 +29,13 @@ public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput, maxRPM;
     m_encoder = m_pivot.getEncoder();
   
      // PID coefficients
-     kP = 0.01; 
+     kP = 0.1; 
      kI = 0;
      kD = 0; 
      kIz = 0; 
      kFF = 1/565; 
-     kMaxOutput = 1; 
-     kMinOutput = -1;
+     kMaxOutput = 0.3; 
+     kMinOutput = -0.3;
   
      // set PID coefficients
      m_pidController.setP(kP);
@@ -60,22 +60,22 @@ public void setPosition(double setPoint)
 
 public void intakePosition()
 {
-  m_pidController.setReference(9.95, CANSparkMax.ControlType.kPosition);
+  m_pidController.setReference(-9., CANSparkMax.ControlType.kPosition);
 }
 
 public void subwooferPosition()
 {
-  m_pidController.setReference(12.5, CANSparkMax.ControlType.kPosition);
+  m_pidController.setReference(-12.5, CANSparkMax.ControlType.kPosition);
 }
 
 public void otherPositions()
 {
-  m_pidController.setReference(12.5, CANSparkMax.ControlType.kPosition);
+  m_pidController.setReference(-12.5, CANSparkMax.ControlType.kPosition);
 }
 
 public boolean LimitChecks()
 {
-return ((m_encoder.getPosition() < 0.4 && m_pivot.getAppliedOutput() < 0) || (m_encoder.getPosition() > PivotConstants.PIVOTMAX && m_pivot.getAppliedOutput() > 0));
+return ((-m_encoder.getPosition() < 0.4 && m_pivot.getAppliedOutput() > 0) || (-m_encoder.getPosition() > PivotConstants.PIVOTMAX && m_pivot.getAppliedOutput() < 0));
 }
 
 public Command withPosition(double setPoint)
@@ -85,27 +85,27 @@ public Command withPosition(double setPoint)
 
 public Command intakePositionCommand()
 {
-  return run(() -> this.setPosition(9.95));
+  return run(() -> this.setPosition(-9.95));
 }
 
 public Command subwooferPositionCommand()
 {
-  return run(() -> this.setPosition(12.5));
+  return run(() -> this.setPosition(-12.5));
 }
 
 public Command ampPositionCommand()
 {
-  return run(() -> this.setPosition(12.5)); //amp stuff
+  return run(() -> this.setPosition(-12.5)); //amp stuff
 }
 
 public Command slowUp()
 {
-  return run(() -> this.setVelocity(.1));
+  return run(() -> this.setVelocity(-.1));
 }
 
 public Command slowDown()
 {
-  return run(() -> this.setVelocity(-.1));
+  return run(() -> this.setVelocity(.1));
 }
 
 public Command stop()

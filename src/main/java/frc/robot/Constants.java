@@ -31,9 +31,9 @@ public static final class FeederConstants {
   public static final int feederID = 32;
   public static final int feederEncoderA = 5;
   public static final int feederEncoderB = 6;
-  public static final double IntakeSPEED = .32;
-  public static final double OutakeSPEED = -.32;
-  public static final double ampOutakeSPEED = -.32;
+  public static final double IntakeSPEED = -30;
+  public static final double OutakeSPEED = 30;
+  public static final double ampOutakeSPEED = -30;
 }
 public static final class PivotConstants {
         

@@ -21,6 +21,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ElevatorConstants;
 
 public class ElevatorSubsystem extends SubsystemBase {
+
+
+  private double position;
   private CANSparkFlex m_leftElevator;
   private SparkPIDController l_pidController;
   private RelativeEncoder l_encoder;
@@ -32,6 +35,8 @@ private GenericEntry elevatorVoltage =
          .getEntry();
   /** Creates a new ElevatorSubsystem. */
   public ElevatorSubsystem() {
+
+    position = 0;
 
     m_leftElevator = new CANSparkFlex(ElevatorConstants.leftElevator, MotorType.kBrushless);
     m_leftElevator.restoreFactoryDefaults();
@@ -49,13 +54,13 @@ private GenericEntry elevatorVoltage =
      l_encoder = m_leftElevator.getEncoder();
   
      // PID coefficients
-     kP = 0.01; 
+     kP = 0.09; 
      kI = 0;
      kD = 0; 
      kIz = 0; 
      kFF = 1/565; 
-     kMaxOutput = 1; 
-     kMinOutput = -1;
+     kMaxOutput = 0.25; // this is the down motion 
+     kMinOutput = -0.7;
      maxRPM = 5700;
   
      // Set PID coefficients
@@ -68,9 +73,21 @@ private GenericEntry elevatorVoltage =
   
      l_encoder.setPosition(0);
   }
+
+public void setHoldPosition(double holdposition) {
+  position = holdposition;
+
+}
+
 public void setVelocity(double setPoint)
 {
   m_leftElevator.set(-setPoint);
+       SmartDashboard.putNumber("Right Drive Encoder", l_encoder.getPosition());
+}
+
+public void setVoltage(double voltage)
+{
+  m_leftElevator.setVoltage(voltage);
        SmartDashboard.putNumber("Right Drive Encoder", l_encoder.getPosition());
 }
 
@@ -134,12 +151,12 @@ public Command withPosition(double setPoint)
 
 public Command holdPosition()
 {
-  return run(() -> this.setPosition(this.getEncoder()));
+  return run(() -> this.setPosition(position));
 }
 
 public Command setHomePosition()
 {
-  return run(() -> this.setHomePosition()/* .until(()-> this.CheckPositionHome())*/); // need to find
+  return run(() -> this.homePosition()/* .until(()-> this.CheckPositionHome())*/); // need to find
 }
 
 public Command setAMPPosition()
@@ -158,11 +175,16 @@ public boolean LimitChecks()
 return ((l_encoder.getPosition() > -1.5 && m_leftElevator.getAppliedOutput() > 0) || (l_encoder.getPosition() < ElevatorConstants.ELEVATORMAX && m_leftElevator.getAppliedOutput() < 0));
 }
 
+public void end() {
+
+}
+
 @Override
 public void periodic() {
   // This method will be called once per scheduler run
 
   elevatorEncoder.setDouble(l_encoder.getPosition());
+  SmartDashboard.putBoolean("limit checks", LimitChecks());
   elevatorVoltage.setDouble(m_leftElevator.getAppliedOutput());
 SmartDashboard.putNumber("Elevator Encoder", l_encoder.getPosition());
 SmartDashboard.putNumber("Elevator Appied Voltage", m_leftElevator.getAppliedOutput() );
